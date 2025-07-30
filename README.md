@@ -1,9 +1,6 @@
 ## Ultralytics Web Automation Framework
-
-    This is a Pytest + Playwright-based automation framework to test core workflows of Ultralytics Hub
-(https://hub.ultralytics.com), including dataset upload, project creation, model training, inference, and export functionalities. It uses the Page Object Model (POM) design pattern for maintainability and scalability.
-It is designed to be realistic, with proper setup/teardown, test data management, and robust error handling.
-It also includes video recording, screenshots, and Allure reporting for better visibility into test execution.
+   This is a Pytest + Playwright-based automation framework to test core workflows of Ultralytics Hub
+(https://hub.ultralytics.com), including dataset upload, project creation, model training, inference, and export functionalities. It uses the Page Object Model (POM) design pattern for maintainability and scalability. It is designed to be realistic, with proper setup/teardown, test data management, and robust error handling. It also includes video recording, screenshots, and Allure reporting for better visibility into test execution.
 
 ------------------------------------------------------------------------------------------------------------
 ## Prerequisites
@@ -23,6 +20,7 @@ It also includes video recording, screenshots, and Allure reporting for better v
 
 ------------------------------------------------------------------------------------------------------------
 ## Project Structure
+```
 .
 ├── coco8.zip
 ├── config
@@ -92,7 +90,7 @@ It also includes video recording, screenshots, and Allure reporting for better v
 │       ├── Q3HzFmViJ5RfKp7rgEbh
 │       └── yalmIHDr0PzIbryOj5Ay
 └── yolo11n.pt
-
+```
 ------------------------------------------------------------------------------------------------------------
 ## Features 
 -  Config-driven: `settings.json` handles secrets & URLs
@@ -160,25 +158,25 @@ Run All Tests Squentially
     1. Install `pytest-xdist`:
         pip install pytest-xdist
     2. Use the `--dist=loadscope` option to run tests in parallel
-    pytest --headed --browser=chromium --alluredir=reports/allure-results --dist=loadscope
+    `pytest --headed --browser=chromium --alluredir=reports/allure-results --dist=loadscope`
     
 ------------------------------------------------------------------------------------------------------------
 ## Allure Reporting
-  Allure results are generated in `reports/allure-results`
-  HTML report can be viewed using:
-    allure serve reports/allure-results 
-  To generate a static report:
-    allure generate reports/allure-results -o reports/allure-report --clean
+  1. Allure results are generated in `reports/allure-results`
+  2. HTML report can be viewed using:
+     `allure serve reports/allure-results`
+  3. To generate a static report:
+     `allure generate reports/allure-results -o reports/allure-report --clean`
 
 ------------------------------------------------------------------------------------------------------------
 ## Video Recording
-  Test videos are recorded via Playwright. Videos of each test run are saved in the `videos` directory.
+   Test videos are recorded via Playwright. Videos of each test run are saved in the `videos` directory.
 
 ## Screenshots
-    Screenshots are taken on failure and saved in the `screenshots` directory.
+   Screenshots are taken on failure and saved in the `screenshots` directory.
 
 ------------------------------------------------------------------------------------------------------------
 ## Author
    Shivkumar Hiremath
-   www.linkedin.com/in/shivkumar-hiremath
+   [LinkedIn](https://www.linkedin.com/in/shivkumar-hiremath/)
 
