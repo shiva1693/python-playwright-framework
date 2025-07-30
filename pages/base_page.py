@@ -5,19 +5,23 @@ from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 logger = logging.getLogger(__name__)
 
 class BasePage:
+    """Initializes the page object."""
     def __init__(self, page):
         self.page = page
 
     def click(self, selector: str, timeout: int = 5000):
+        """Waits for and clicks on the specified element."""
         logger.info(f"Clicking element: {selector}")
         self.wait_for_element(selector, timeout)
         self.page.locator(selector).click()
 
     def type(self, selector: str, text: str):
+        """Fills the given text into the specified input field."""
         logger.info(f"Typing in element: {selector} -> '{text}'")
         self.page.locator(selector).fill(text)
 
     def wait_for_element(self, selector, timeout=5000):
+        """Waits for the element to become visible within the timeout."""
         try:
             self.page.wait_for_selector(selector, timeout=timeout, state="visible")
         except Exception as e:
@@ -25,16 +29,19 @@ class BasePage:
             raise AssertionError(f"Element not found: {selector}") from e
     
     def get_text(self, selector: str) -> str:
+        """Returns the visible text of the specified element."""
         text = self.page.locator(selector).inner_text()
         logger.info(f"Text from element {selector}: {text}")
         return text
 
     def is_visible(self, selector: str) -> bool:
+        """Checks if the specified element is visible on the page."""
         visible = self.page.locator(selector).is_visible()
         logger.info(f"Element {selector} visibility: {visible}")
         return visible
     
     def scroll_to_element(self, selector: str, timeout: int = 100):
+        """Scrolls the page to bring the element into view."""
         try:
             self.page.wait_for_selector(selector, timeout=timeout, state="visible")
             self.page.locator(selector).scroll_into_view_if_needed()
@@ -44,6 +51,7 @@ class BasePage:
             raise
 
     def clear_and_fill_input(self, selector: str, value: str, timeout: int = 5000):
+        """Clears an input field, fills it with a value, and presses Enter."""
         try:
             input_field = self.page.locator(selector)
             logger.info(f"Attempting to clear and fill input: {selector} with value: {value}")
@@ -64,6 +72,7 @@ class BasePage:
             raise
 
     def navigate_to_url(self, url: str, wait_for_element: str = None, timeout: int = 10000):
+        """Navigates to the given URL and optionally waits for an element."""
         logger.info(f"Navigating to URL: {url}")
         self.page.goto(url)
 
@@ -73,6 +82,7 @@ class BasePage:
 
 
     def download_file_and_verify_extension(self, download_button_selector: str, expected_extension: str):
+        """Downloads a file and checks if it has the expected extension."""
         with self.page.expect_download() as download_info:
             self.page.click(download_button_selector)
         download = download_info.value
@@ -108,6 +118,7 @@ class BasePage:
     
     
     def set_slider_value_to(self, slider_locator: str, percent: float):
+        """Moves a slider to the specified percentage of its range."""
         try:
             slider = self.page.locator(slider_locator)
 
@@ -145,6 +156,7 @@ class BasePage:
 
 
     def check_expected_texts_visible(self, containers_locator, text_xpath: str, expected_texts: list[str]) -> bool:
+        """Checks if all expected texts are visible within given containers."""
         try:
             containers_locator.first.wait_for(timeout=5000)
             detected = set()

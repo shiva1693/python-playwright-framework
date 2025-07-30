@@ -7,6 +7,9 @@ from utils.helpers import take_screenshot
 logger = logging.getLogger(__name__)
 
 class TrainingPage(BasePage):
+    """
+    Page object for the Training, including dataset selection, model config, and training actions.
+    """
 
     MODEL_TAB ='li#Models a[href="/models"]'
     TRAIN_MODEL_BUTTON = "//button[@id='Quick-Action' and .//div[contains(text(),'Train Model')]]"
@@ -31,17 +34,21 @@ class TrainingPage(BasePage):
     DEPLOY_TAB="//p[normalize-space(.)='Deploy']"
 
     def __init__(self, page):
+        """Initializes the TrainingPage with the given Playwright page."""
         super().__init__(page)
 
     def navigate_to_model_tab(self):
+        """Navigates to the 'Model' tab from the main menu."""
         logger.info("Navigating to Model tab")
         self.click(self.MODEL_TAB)
 
     def click_train_model_button(self):
+        """Clicks the 'Train Model' button on the models page."""
         logger.info("Clicking on Train Model button")
         self.click(self.TRAIN_MODEL_BUTTON)
 
     def select_dataset(self, dataset_name: str = "coco8"):
+        """Selects a dataset and continues to the next training step."""
         logger.info(f"Selecting dataset: {dataset_name}")
         self.wait_for_element(self.DATASET_SEARCHBAR)
         self.type(self.DATASET_SEARCHBAR, dataset_name)
@@ -50,6 +57,7 @@ class TrainingPage(BasePage):
         # time.sleep(10)  
 
     def select_project_from_dropdown_and_provide_model_name(self, project_name: str, model_name: str):
+        """Selects a project and inputs a model name for training."""
         logger.info(f"Selecting project from dropdown: {project_name}")
         self.click(self.PROJECT_DROPDOWN_TRIGGER)
         project_locator = self.PROJECT_OPTION_LOCATOR_TEMPLATE.format(project_name=project_name)
@@ -58,6 +66,7 @@ class TrainingPage(BasePage):
         self.type(self.MODEL_NAME,model_name)
     
     def set_model_config(self, model_arch : str = "YOLO11n", epochs: str = "5"):
+        """Sets the model architecture and training configuration options."""
         logger.info(f"Setting Model Configuratuions")
         model_arch = self.MODEL_ARCHITECTURE.format(model_arch=model_arch)
         self.wait_for_element(model_arch)
@@ -66,19 +75,20 @@ class TrainingPage(BasePage):
         self.clear_and_fill_input(self.EPOCHS_INPUT, epochs)  
         self.click(self.IMAGE_SIZE)
         self.click(self.CONTINUE_BUTTON)
-        # time.sleep(10)  
 
     def train_your_model(self):
+        """Initiates training using the 'Bring your own agent' option."""
         logger.info("Training your model")
         self.click(self.BRING_OWN_AGENT)
 
     def copy_content_from_step2(self):
+        """Clicks to copy the training command from Step 2. of Bring your agent"""
         self.page.click(self.STEP2_COPY_TEXT)
         logger.info("Content copied from Step 2.")
           
     def verify_connection(self, timeout: int = 10):
+        """Waits for and verifies the 'Connected' message appears."""
         logger.info("Verifying if connection is established (i.e., 'Connected' message appears)")
-        # time.sleep(20)
         try:
             locator = self.page.locator(self.CONNECTED_TEXT)
             expect(locator).to_be_visible(timeout=timeout)
@@ -90,14 +100,14 @@ class TrainingPage(BasePage):
         logger.info("Clicking on the 'Done' button to finish the training step.")
         
     def click_on_done_button(self):
+        """Clicks the 'Done' button to complete the training setup."""
         logger.info("Clicking on the 'Done' button")
         self.wait_for_element(self.DONE_BUTTON)
         self.click(self.DONE_BUTTON)
-        # time.sleep(15)
 
     def has_training_started(self):
+        """Checks if the training tab is visible, indicating training has started."""
         logger.info("Verifying if training has started")
-        # time.sleep(10)
         return self.is_visible(self.TRAIN_TAB)
      
     

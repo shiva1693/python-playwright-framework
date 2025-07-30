@@ -2,6 +2,7 @@ import os
 import json
 
 def load_settings(filename="settings.json"):
+    """Loads settings from a JSON file and swaps any 'env.' values with matching environment variables."""
     with open(os.path.join(os.path.dirname(__file__), filename)) as f:
         data = json.load(f)
 

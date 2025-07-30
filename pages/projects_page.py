@@ -7,6 +7,9 @@ from pages.base_page import BasePage
 logger = logging.getLogger(__name__)
 
 class ProjectsPage(BasePage):
+    """
+    Page object for the Projects section, including navigation and project creation actions.
+    """
 
     PROJECTS_TAB = 'a[href="/projects"] > div.name.animate-slide'
     NEW_PROJECT_BUTTON = 'button#Quick-Action.primary-btn.light.quick-action'
@@ -15,14 +18,17 @@ class ProjectsPage(BasePage):
     CREATE_BUTTON = 'button.primary-btn.light:has-text("Create") >> nth=1'
 
     def __init__(self, page):
+        """Initializes the ProjectsPage with the given Playwright page."""
         super().__init__(page)
 
     def navigate_to_projects_tab(self):
+        """Navigates to the Projects tab and waits for the new project button to appear."""
         logger.info("Navigating to Projects tab")
         self.click(self.PROJECTS_TAB)
         self.wait_for_element(self.NEW_PROJECT_BUTTON)
 
     def create_new_project(self, project_name: str, project_description: str):
+        """Creates a new project with the given name and description."""
         logger.info(f"Creating project: {project_name}")
         self.click(self.NEW_PROJECT_BUTTON)
 
@@ -34,6 +40,7 @@ class ProjectsPage(BasePage):
         expect(self.page.locator(f"text={project_name}")).to_be_visible(timeout=10000)
 
     def is_project_created(self, project_name: str) -> bool:
+        """Checks if the project with the given name is visible on the page."""
         logger.info(f"Project is created : {project_name}")
         return self.is_visible(f"text={project_name}")
 

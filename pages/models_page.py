@@ -11,7 +11,9 @@ logger = logging.getLogger(__name__)
 TEST_PAGE_NAME = "models_page"
 
 class ModelsPage(BasePage):
-
+    """
+    Page object for interacting with the models page, including upload, preview, export, and verification actions.
+    """
     MODEL_TYPE = '//p[normalize-space(.)="YOLO11n"]//ancestor::div[@class="model-wrapper"]' 
     PREVIEW_TAB = '//p[normalize-space(.)="Preview"]//ancestor::div[@class="title"]'
     UPLOAD_INPUT = "input[type='file']"
@@ -29,9 +31,11 @@ class ModelsPage(BasePage):
 
 
     def __init__(self, page):
+        """Initializes the ModelsPage with the given Playwright page."""
         super().__init__(page)
 
     def open_model_preview(self):  
+        """Opens the preview tab for the YOLO11n model."""
         logger.info("Opening YOLO11n model preview")
         self.click(self.MODEL_TYPE)
         self.click(self.PREVIEW_TAB)
@@ -46,6 +50,7 @@ class ModelsPage(BasePage):
     #     time.sleep(100)
 
     def upload_image_for_inference(self):
+        """Uploads a local image file for model inference."""
         logger.info("Uploading the Image for Inference")
         rel_path="/test_data/inference.jpg"
         image_path = os.getcwd() + os.path.realpath(rel_path)
@@ -54,14 +59,17 @@ class ModelsPage(BasePage):
         self.page.locator(self.UPLOAD_INPUT).set_input_files(image_path)
 
     def is_object_detected(self, object_name):
+        """Checks if a specific object label was detected on the page."""
         logger.info(f"Checking if '{object_name}' is getting detected")
        
     def are_expected_objects_visible(self, expected_objects: list[str]) -> bool:
+        """Checks if all expected objects are visible in the inference section."""
         section = self.page.locator(f"xpath={self.INFERENCE_SECTION_XPATH}")
         containers = section.locator(f"xpath={self.OBJECT_CONTAINER_XPATH}")
         return self.check_expected_texts_visible(containers, self.OBJECT_TEXT_XPATH, expected_objects)
         
     def adjust_confidence_threshold(self, percent):
+        """Adjusts the confidence threshold slider to the given percentage."""
         # logger.info(f"Adjusting confidence threshold to: {threshold}")
         # self.set_slider_value_to(self.CONFIDENCE_THRESHOLD_SLIDER, threshold)
         # logger.info("Confidence threshold set successfully.")
@@ -71,15 +79,18 @@ class ModelsPage(BasePage):
         logger.info("Confidence threshold set successfully.")
     
     def is_object_detected(self, object_label):
+        """Checks if a specific object label was detected on the page."""
         logger.info(f"Checking if object '{object_label}' was detected")
         return self.is_visible(f"text={object_label}")
     
     def click_on_latest_created_model(self, model_name):
+        """Clicks on the latest created model by name."""
         logger.info(f"Clicking on the latest created model: {model_name}")
         self.click(self.CUSTOM_MODEL_CLICKABLE.format(model_name=model_name))
         logger.info("Model clicked successfully.")
     
     def click_deploy_tab(self):
+        """Clicks the Deploy tab on the models page."""
         logger.info("Clicking on the Deploy tab")
         self.wait_for_element(self.DEPLOY_TAB)
         # self.page.locator(self.DEPLOY_TAB).scroll_into_view_if_needed()
@@ -87,11 +98,15 @@ class ModelsPage(BasePage):
         logger.info("Deploy tab clicked successfully.")
     
     def scroll_to_export_options_section(self):
+        """Scrolls to the export section on the models page."""
         logger.info("Scrolling to the export options section")
         self.scroll_to_element(self.EXPORT_SECTION)
         logger.info("Scrolled to the export options section")
     
-    def export_download_extract_fileExt(self, model_card_name: str):     
+    def export_download_extract_fileExt(self, model_card_name: str):  
+        """
+        Exports the selected model format, downloads the file, and returns its file extension after verifying the download.
+        """
         try:
             logger.info(f"Starting export for model format: {model_card_name}")
 
