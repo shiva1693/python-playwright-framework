@@ -4,10 +4,10 @@ __pycache__/
 *.log
 *.env
 
-# Playwright test output
-videos/
-screenshots/
-allure-results/
+# # Playwright test output
+# videos/
+# screenshots/
+# allure-results/
 
 # VSCode/IDE
 .vscode/
@@ -16,3 +16,6 @@ allure-results/
 # OS files
 .DS_Store
 Thumbs.db
+
+
+

@@ -1,0 +1,6 @@
+[35mDEBUG   [0m asyncio:selector_events.py:64 Using selector: KqueueSelector
+[32mINFO    [0m pages.base_page:base_page.py:12 Clicking element: //div[contains(@class, "tab")]//div[@class="title" and contains(.,"Sign In")]
+[32mINFO    [0m pages.base_page:base_page.py:17 Typing in element: //input[@type="email"] -> 'Nishank.aws02@outlook.com'
+[32mINFO    [0m pages.base_page:base_page.py:17 Typing in element: //input[@type="password"] -> 'AWS@9394#'
+[32mINFO    [0m pages.base_page:base_page.py:12 Clicking element: //button[contains(@class, "primary-btn") and contains(.,"Sign In")]
+[32mINFO    [0m utils.helpers:helpers.py:35 Capturing screenshot: screenshots/models_page_test_upload_dataset[chromium]_1753816840.png

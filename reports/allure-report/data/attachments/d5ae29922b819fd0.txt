@@ -1,0 +1,25 @@
+[35mDEBUG   [0m asyncio:selector_events.py:64 Using selector: KqueueSelector
+[32mINFO    [0m pages.base_page:base_page.py:12 Clicking element: //div[contains(@class, "tab")]//div[@class="title" and contains(.,"Sign In")]
+[32mINFO    [0m pages.base_page:base_page.py:17 Typing in element: //input[@type="email"] -> 'Nishank.aws02@outlook.com'
+[32mINFO    [0m pages.base_page:base_page.py:17 Typing in element: //input[@type="password"] -> 'AWS@9394#'
+[32mINFO    [0m pages.base_page:base_page.py:12 Clicking element: //button[contains(@class, "primary-btn") and contains(.,"Sign In")]
+[32mINFO    [0m tests.test_scenario_5_model_export:test_scenario_5_model_export.py:54 Step 1: Navigate to Models tab
+[32mINFO    [0m pages.training_page:training_page.py:37 Navigating to Model tab
+[32mINFO    [0m pages.base_page:base_page.py:12 Clicking element: li#Models a[href="/models"]
+[32mINFO    [0m tests.test_scenario_5_model_export:test_scenario_5_model_export.py:57 Step 2: Click on the latest created trained model
+[32mINFO    [0m pages.models_page:models_page.py:141 Clicking on the latest created model: Test Model
+[32mINFO    [0m pages.base_page:base_page.py:12 Clicking element: (//p[@title='Model name' and text()='Test Model'])[1]
+[32mINFO    [0m pages.models_page:models_page.py:144 Latest created model clicked successfully.
+[32mINFO    [0m tests.test_scenario_5_model_export:test_scenario_5_model_export.py:60 Step 3 Navigate to Deploy tab
+[32mINFO    [0m pages.models_page:models_page.py:97 Clicking on the Deploy tab
+[32mINFO    [0m pages.base_page:base_page.py:12 Clicking element: //p[normalize-space(.)='Deploy']
+[32mINFO    [0m pages.models_page:models_page.py:101 Deploy tab clicked successfully.
+[32mINFO    [0m tests.test_scenario_5_model_export:test_scenario_5_model_export.py:63 Step 4: Scroll dowmn to the export section
+[32mINFO    [0m pages.models_page:models_page.py:104 Scrolling to the export options section
+[32mINFO    [0m pages.base_page:base_page.py:41 Scrolled to element: //h2[contains(@class, 'card-title') and normalize-space(text())='Export']
+[32mINFO    [0m pages.models_page:models_page.py:106 Scrolled to the export options section
+[32mINFO    [0m tests.test_scenario_5_model_export:test_scenario_5_model_export.py:66 Step 5: Export model in all supported formats
+[32mINFO    [0m pages.models_page:models_page.py:111 Exporting model card: TFLite
+[32mINFO    [0m pages.base_page:base_page.py:12 Clicking element: //div[contains(@class, 'export-item-wrapper') and .//h4[normalize-space(text())='TFLite']]
+[31m[1mERROR   [0m pages.models_page:models_page.py:127 Failed to export model card 'TFLite'. Error: Element not found: //div[contains(@class, 'export-item-wrapper') and .//h4[normalize-space(text())='TFLite']]
+[32mINFO    [0m utils.helpers:helpers.py:35 Capturing screenshot: screenshots/models_page_test_model_export_in_all_formats[chromium]_1753864689.png

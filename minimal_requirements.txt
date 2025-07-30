@@ -1,0 +1,6 @@
+allure-pytest==2.15.0
+hub-sdk==0.0.20
+pipdeptree==2.28.0
+pyperclip==1.9.0
+pytest-playwright==0.7.0
+ultralytics==8.3.170

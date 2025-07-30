@@ -1,0 +1,8 @@
+{
+    "base_url": "https://hub.ultralytics.com",
+    "username": "env.TEST_USERNAME",
+    "password": "env.TEST_PASSWORD",
+    "yolo11_url": "https://hub.ultralytics.com/projects/fB6SNiDdk44W6sRWctyc",
+    "model_export_url": "https://hub.ultralytics.com/models?tab=deploy"
+
+  }
