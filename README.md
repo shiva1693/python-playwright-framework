@@ -22,21 +22,17 @@
 ## Project Structure
 ```
 .
-├── coco8.zip
-├── config
+├── config			#Test config and credentials
 │   ├── __init__.py
 │   ├── config.py
 │   └── settings.json
-├── downloads
+├── downloads		#Download Files
 │   └── model_export
-│       └── PyTorch_model.pt
-├── element_wait_failed.png
-├── logs
-│   └── test_debug.log
+├── logs			#Log files for test execution
 ├── minimal_requirements.txt
-├── model_scripts
+├── model_scripts		#Script to trigger YOLO training
 │   └── train_model_script.py
-├── pages
+├── pages			#Page Object classes (POM structure)
 │   ├── __init__.py
 │   ├── base_page.py
 │   ├── dashboard_page.py
@@ -45,32 +41,22 @@
 │   ├── models_page.py
 │   ├── projects_page.py
 │   └── training_page.py
-├── pytest.ini
-├── README.md
-├── reports
-│   ├── allure-report
-│   │   ├── app.js
-│   │   ├── data
-│   │   ├── export
-│   │   ├── favicon.ico
-│   │   ├── history
-│   │   ├── index.html
-│   │   ├── plugin
-│   │   ├── styles.css
-│   │   └── widgets
-│   ├── allure-results
-│   ├── allure-results-20250729_170813
-│   └── test_execution.log
-├── requirements.txt
-├── run_tests.sh
-├── screenshots
-├── test_data
+├── pytest.ini 		#Pytest config (browser, video, logging)
+├── README.md		#Project overview and setup guide
+├── reports			#Allure results and logs
+│   └── allure-results-20250730_190157
+├── requirements.txt		#Full list of dependencies
+├── run_tests.sh		#Shell script to run tests
+├── screenshots                  #Screenshots captured on test failure
+│   ├── models_page_test_model_export_in_all_formats[chromium0]_1753898585.png
+│   └── models_page_test_train_model[chromium1]_1753898608.png
+├── test_data	 		#Dataset, images, test input data
 │   ├── coco8.zip
 │   ├── inference.jpg
 │   ├── model_export_data.py
 │   ├── model_interence_data.py
 │   └── model_training_data.py
-├── tests
+├── tests				#All test scenario files
 │   ├── __init__.py
 │   ├── conftest.py
 │   ├── test_scenario_1_upload_dataset.py
@@ -78,18 +64,17 @@
 │   ├── test_scenario_3_train_model.py
 │   ├── test_scenario_4_inference.py
 │   └── test_scenario_5_model_export.py
-├── utils
+├── utils 			          #Helpers, CLI triggers, logger
 │   ├── __init__.py
 │   ├── cli_connection.py
 │   ├── helpers.py
 │   └── logger.py
-├── videos
-│   └── 1088ddba4b71eaf748200c6c7a377f6f.webm
-├── weights
-│   └── hub
-│       ├── Q3HzFmViJ5RfKp7rgEbh
-│       └── yalmIHDr0PzIbryOj5Ay
-└── yolo11n.pt
+├── videos			        #Playwright screen recordings
+    ├── 693b44cfd4211e5b404e499a3d538029.webm
+    ├── weights
+    └── hub
+
+
 ```
 ------------------------------------------------------------------------------------------------------------
 ## Features 
